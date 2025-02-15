@@ -1,0 +1,6 @@
+Agent: Example
+Logo: https://agentstxt.dev/favicon.svg
+Description: agents.txt example
+API:
+Communication: DID
+Payment: AgentPOS
