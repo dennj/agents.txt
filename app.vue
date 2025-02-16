@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import githubIcon from '~/assets/github.svg';
 import whatsappIcon from '~/assets/whatsapp.svg';
+import emailIcon from '~/assets/email.svg';
 import normalizeUrl from 'normalize-url';
 
 const supabase = useSupabaseClient();
@@ -52,7 +53,8 @@ const checkAgentsTxt = async () => {
     await fetchStoredAgents();
   } catch (error: any) {
     agentsTxtContent.value = null;
-    errorMessage.value = error.message;
+    console.error(error.message);
+    errorMessage.value = "No file agents.txt found in this domain.";
   }
 };
 
@@ -135,9 +137,9 @@ onMounted(fetchStoredAgents);
       <h2 class="text-xl font-bold text-gray-700">Example agents.txt</h2>
       <pre class="whitespace-pre-wrap text-gray-700 text-sm">
         Name: Example
-        Logo: https://myai.example.com/logo.png
+        Logo: my.example.com/logo.png
         Description: AI Agent example
-        API: https://myai.example.com/openapi.yaml
+        API: my.example.com/openapi.yaml
         Communication: DID
         Payment: AgentPOS
       </pre>
@@ -157,6 +159,11 @@ onMounted(fetchStoredAgents);
         class="btn btn-success flex items-center gap-2">
         <img :src="whatsappIcon" alt="WhatsApp" class="w-5 h-5" />
         Join the Community
+      </a>
+
+      <a href="mailto:dennj.osele@gmail.com" class="btn btn-outline flex items-center gap-2">
+        <img :src="emailIcon" alt="Email" class="w-5 h-5 filter invert" />
+        Contact Us
       </a>
     </div>
   </div>
@@ -183,7 +190,7 @@ onMounted(fetchStoredAgents);
     <div v-if="errorMessage" class="mt-4 text-red-500">{{ errorMessage }}</div>
   </section>
 
-  <section class="py-12 px-6 text-center bg-gray-200">
+  <section class="min-h-screen py-12 px-6 text-center bg-gray-200">
     <h2 class="text-3xl font-bold text-secondary">Known Agents</h2>
 
     <div v-if="storedAgents.length > 0"
@@ -212,6 +219,160 @@ onMounted(fetchStoredAgents);
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="min-h-screen py-12 px-6 text-center bg-gray-900 text-white">
+    <h2 class="text-4xl font-bold text-primary">Project Long-Term Goals</h2>
+    <div class="mt-4 max-w-3xl mx-auto text-gray-300">
+      <h3 class="text-2xl font-semibold">Our mission is to build the <b>Internet of Agents</b>.</h3>
+
+      <p class="mt-4 leading-relaxed">
+        Hardware prices continue to decrease in line with Moore's Law, and open-source models now compete with OpenAI’s
+        latest offerings.
+        With market barriers disappearing, the real bottleneck is <b>data</b>. <br>
+        As many companies hold domain-specific datasets, the immediate future will see the rise of numerous
+        domain-expert agents interacting with both human and AI agents.
+      </p>
+
+      <p class="mt-6 leading-relaxed">Here are our long-term goals:</p>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
+      <!-- Goal 1 -->
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+        <div
+          class="w-7 h-14 flex items-center justify-center bg-green-900 text-white rounded-full text-xl font-bold flex-shrink-0">
+          1
+        </div>
+        <div>
+          <h3 class="text-lg font-bold">Agents Discovery 🤖</h3>
+          <p class="text-gray-600">
+            Establish a standardized <code>agents.txt</code> file that enables AI Agents and Business-to-Agent APIs to
+            be easily discovered.
+          </p>
+        </div>
+      </div>
+
+      <!-- Goal 2 -->
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+        <div
+          class="w-7 h-14 flex items-center justify-center bg-green-700 text-white rounded-full text-xl font-bold flex-shrink-0">
+          2
+        </div>
+        <div>
+          <h3 class="text-lg font-bold">Agent Search Engine 🔎</h3>
+          <p class="text-gray-600">
+            Build a search engine to help users and other AI agents find and connect with AI Agents.
+          </p>
+        </div>
+      </div>
+
+      <!-- Goal 3 -->
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+        <div
+          class="w-7 h-14 flex items-center justify-center bg-teal-600 text-white rounded-full text-xl font-bold flex-shrink-0">
+          3</div>
+        <div>
+          <h3 class="text-lg font-bold">A2A Communication Protocol 🔗</h3>
+          <p class="text-gray-600">
+            Design a protocol for direct agent messaging, negotiation, and collaboration.
+          </p>
+        </div>
+      </div>
+
+      <!-- Goal 4 -->
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+        <div
+          class="w-7 h-14 flex items-center justify-center bg-blue-500 text-white rounded-full text-xl font-bold flex-shrink-0">
+          4</div>
+        <div>
+          <h3 class="text-lg font-bold">Agent Authentication 🔑</h3>
+          <p class="text-gray-600">
+            Create a secure authentication system for AI Agents and to access personal data on behalf of users.
+          </p>
+        </div>
+      </div>
+
+      <!-- Goal 5 -->
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+        <div
+          class="w-7 h-14 flex items-center justify-center bg-indigo-600 text-white rounded-full text-xl font-bold flex-shrink-0">
+          5
+        </div>
+        <div>
+          <h3 class="text-lg font-bold">Agent Rating System ⭐</h3>
+          <p class="text-gray-600">
+            Allow AI agents to review other agents to improve service quality and avoid scams.
+          </p>
+        </div>
+      </div>
+
+      <!-- Goal 6 -->
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+        <div
+          class="w-7 h-14 flex items-center justify-center bg-purple-600 text-white rounded-full text-xl font-bold flex-shrink-0">
+          6</div>
+        <div>
+          <h3 class="text-lg font-bold">A2A Payment System 💰</h3>
+          <p class="text-gray-600">
+            Develop a decentralized payment system that enables Agent-to-Agent transactions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Goal 7 -->
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+        <div
+          class="w-7 h-14 flex items-center justify-center bg-purple-800 text-white rounded-full text-xl font-bold flex-shrink-0">
+          7
+        </div>
+        <div>
+          <h3 class="text-lg font-bold">Automate Invoices & Reconciliation 🧾</h3>
+          <p class="text-gray-600">
+            Implement an automated invoicing system that integrates with the agent payment system.
+          </p>
+        </div>
+      </div>
+
+      <!-- Goal 8 -->
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+        <div
+          class="w-7 h-14 flex items-center justify-center bg-red-500 text-white rounded-full text-xl font-bold flex-shrink-0">
+          8
+        </div>
+        <div>
+          <h3 class="text-lg font-bold">Watch Internet of Agents Explode 🚀</h3>
+          <p class="text-gray-600">
+            Once these components are in place, the Internet of Agents will thrive, revolutionizing the world.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex flex-col items-center justify-center text-center px-6 py-12 bg-black">
+    <p class="mt-4 text-lg max-w-3xl leading-relaxed text-gray-300">
+       Join us!
+    </p>
+
+    <div class="mt-8 flex flex-col sm:flex-row gap-6">
+      <a href="https://github.com/dennj/agents.txt" target="_blank"
+        class="btn btn-outline flex items-center gap-3 px-6 py-3">
+        <img :src="githubIcon" alt="GitHub" class="w-5 h-5 filter invert" />
+        Contribute on GitHub
+      </a>
+
+      <a href="https://chat.whatsapp.com/Ever8ohOJRE3D6r5bLPViQ" target="_blank"
+        class="btn btn-success flex items-center gap-3 px-6 py-3">
+        <img :src="whatsappIcon" alt="WhatsApp" class="w-5 h-5" />
+        Join the Community
+      </a>
+
+      <a href="mailto:dennj.osele@gmail.com" class="btn btn-outline flex items-center gap-3 px-6 py-3">
+        <img :src="emailIcon" alt="Email" class="w-5 h-5 filter invert" />
+        Contact Us
+      </a>
     </div>
   </section>
 </template>
