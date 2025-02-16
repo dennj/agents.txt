@@ -28,8 +28,14 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxtjs/sitemap', '@nuxtjs/tailwindcss', 'nuxt-gtag', '@nuxtjs/robots'],
+  modules: ['@nuxtjs/sitemap', '@nuxtjs/tailwindcss', '@nuxtjs/supabase', 'nuxt-gtag', '@nuxtjs/robots'],
 
+  supabase: {
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
+    redirect: false
+  },
+  
   sitemap: <Partial<SitemapModuleOptions>>{
     hostname: 'https://agentstxt.dev',
     gzip: true,

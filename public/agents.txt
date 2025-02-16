@@ -1,5 +1,5 @@
-Agent: Example
-Logo: https://agentstxt.dev/favicon.svg
+Name: Example
+Logo: agentstxt.dev/favicon.svg
 Description: agents.txt example
 API:
 Communication: DID
