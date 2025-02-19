@@ -2,5 +2,5 @@ Name: Example
 Logo: agentstxt.dev/favicon.svg
 Description: agents.txt example
 API:
-Communication: DID
-Payment: AgentPOS
+Communication: A2Av1
+Author: dennj.osele@gmail.com

@@ -86,7 +86,8 @@ const parseAgentsTxt = (content: string) => {
     logo: data["logo"] ? data["logo"] : "https://agentstxt.dev/favicon.svg",
     description: data["description"],
     api: data["api"] || null,
-    communication: data["communication"] || null,
+    communication: data["communication"],
+    author: data["author"] || null,
     payment: data["payment"] || null,
   };
 };
@@ -101,6 +102,7 @@ const saveToSupabase = async (formattedUrl: string, parsedData: any) => {
       description: parsedData.description,
       api: parsedData.api,
       communication: parsedData.communication,
+      author: parsedData.author,
       payment: parsedData.payment,
     }
   ], { onConflict: ['url'] });
@@ -123,7 +125,7 @@ onMounted(fetchStoredAgents);
   <div class="min-h-screen bg-base-200 flex flex-col items-center justify-center text-center p-8">
     <div class="flex items-end space-x-4">
       <h1 class="text-6xl font-bold text-primary">agents.txt</h1>
-      <span class="text-lg text-gray-300">v0.0.1 alpha</span>
+      <span class="text-lg text-gray-300">v0.0.2 alpha</span>
     </div>
     <p class="mt-6 text-lg max-w-3xl leading-relaxed">
       We are building an open standard to create a decentralized, democratic <b>Internet of Agents</b>.
@@ -140,8 +142,8 @@ onMounted(fetchStoredAgents);
         Logo: my.example.com/logo.png
         Description: AI Agent example
         API: my.example.com/openapi.yaml
-        Communication: DID
-        Payment: AgentPOS
+        Communication: A2Av1
+        Author: dennj.osele@gmail.com
       </pre>
     </div>
 
@@ -209,6 +211,7 @@ onMounted(fetchStoredAgents);
           <p class="text-gray-600 mt-2">{{ agent.description }}</p>
 
           <p v-if="agent.communication" class="text-gray-600 mt-1"><b>Communication:</b> {{ agent.communication }}</p>
+          <p v-if="agent.author" class="text-gray-600 mt-1"><b>Author:</b> {{ agent.author }}</p>
           <p v-if="agent.payment" class="text-gray-600 mt-1"><b>Payment:</b> {{ agent.payment }}</p>
 
           <!-- API Link (if available) -->
