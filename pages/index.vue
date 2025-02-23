@@ -65,9 +65,18 @@ onMounted(fetchStoredAgents);
 
       <a href="https://discord.gg/NRNfuaVk"
         class="btn bg-[#7289da] text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#5b6eae] transition">
-        <img :src="discordIcon" alt="Email" class="w-5 h-5 filter invert" />
+        <img :src="discordIcon" alt="Discord" class="w-5 h-5 filter invert" />
         Join Discord
       </a>
+    </div>
+
+    <!-- Sponsors Section -->
+    <div class="mt-12 flex flex-col w-full max-w-6xl pr-8 items-center">
+      <h3 class="text-lg font-semibold text-gray-00">Backed by</h3>
+      <div class="mt-4 flex space-x-8">
+        <NuxtImg src="/images/dpl.avif" alt="DogPatch Labs" class="h-12" draggable="false" />
+        <NuxtImg src="/images/ndrc.avif" alt="NDRC" class="h-12" draggable="false" />
+      </div>
     </div>
   </div>
 
@@ -126,7 +135,7 @@ onMounted(fetchStoredAgents);
 
     <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
       <!-- Goal 1 -->
-      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg">
         <div
           class="w-7 h-14 flex items-center justify-center bg-green-900 text-white rounded-full text-xl font-bold flex-shrink-0">
           1
@@ -141,7 +150,7 @@ onMounted(fetchStoredAgents);
       </div>
 
       <!-- Goal 2 -->
-      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg">
         <div
           class="w-7 h-14 flex items-center justify-center bg-green-700 text-white rounded-full text-xl font-bold flex-shrink-0">
           2
@@ -155,7 +164,7 @@ onMounted(fetchStoredAgents);
       </div>
 
       <!-- Goal 3 -->
-      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg">
         <div
           class="w-7 h-14 flex items-center justify-center bg-teal-600 text-white rounded-full text-xl font-bold flex-shrink-0">
           3</div>
@@ -168,7 +177,7 @@ onMounted(fetchStoredAgents);
       </div>
 
       <!-- Goal 4 -->
-      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg">
         <div
           class="w-7 h-14 flex items-center justify-center bg-blue-500 text-white rounded-full text-xl font-bold flex-shrink-0">
           4</div>
@@ -181,7 +190,7 @@ onMounted(fetchStoredAgents);
       </div>
 
       <!-- Goal 5 -->
-      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg">
         <div
           class="w-7 h-14 flex items-center justify-center bg-indigo-600 text-white rounded-full text-xl font-bold flex-shrink-0">
           5
@@ -195,7 +204,7 @@ onMounted(fetchStoredAgents);
       </div>
 
       <!-- Goal 6 -->
-      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg">
         <div
           class="w-7 h-14 flex items-center justify-center bg-purple-600 text-white rounded-full text-xl font-bold flex-shrink-0">
           6</div>
@@ -208,7 +217,7 @@ onMounted(fetchStoredAgents);
       </div>
 
       <!-- Goal 7 -->
-      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg">
         <div
           class="w-7 h-14 flex items-center justify-center bg-purple-800 text-white rounded-full text-xl font-bold flex-shrink-0">
           7
@@ -222,7 +231,7 @@ onMounted(fetchStoredAgents);
       </div>
 
       <!-- Goal 8 -->
-      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg shadow-md">
+      <div class="flex items-start space-x-4 p-6 bg-white text-gray-800 rounded-lg">
         <div
           class="w-7 h-14 flex items-center justify-center bg-red-500 text-white rounded-full text-xl font-bold flex-shrink-0">
           8
