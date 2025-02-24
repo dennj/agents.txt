@@ -5,8 +5,7 @@ import emailIcon from '~/assets/email.svg';
 import discordIcon from '~/assets/discord.svg';
 
 const supabase = useSupabaseClient();
-
-const storedAgents = ref([]);
+const storedAgents = ref<Array<{ id: number; name: string; logo: string; description: string; api?: string; communication?: string; author?: string; payment?: string; url: string }>>([]);
 
 // Function to fetch stored agents from Supabase
 const fetchStoredAgents = async () => {
@@ -23,10 +22,11 @@ onMounted(fetchStoredAgents);
 
 <template>
   <div class="min-h-screen bg-base-200 flex flex-col items-center justify-center text-center p-8">
-    <div class="flex items-end space-x-4">
+    <header class="flex items-end space-x-4">
       <h1 class="text-6xl font-bold text-primary">agents.txt</h1>
       <span class="text-lg text-gray-300">v0.0.2 alpha</span>
-    </div>
+    </header>
+
     <p class="mt-6 text-lg max-w-3xl leading-relaxed">
       We are building an open standard to create a decentralized, democratic <b>Internet of Agents</b>.
       <br>
@@ -35,7 +35,7 @@ onMounted(fetchStoredAgents);
       discovered.
     </p>
 
-    <div class="mt-6 p-4 border border-primary rounded bg-gray-50 text-left max-w-2xl mx-auto">
+    <section class="mt-6 p-4 border border-primary rounded bg-gray-50 text-left max-w-2xl mx-auto">
       <h2 class="text-xl font-bold text-gray-700">Example agents.txt</h2>
       <pre class="whitespace-pre-wrap text-gray-700 text-sm">
         Name: Example
@@ -45,50 +45,62 @@ onMounted(fetchStoredAgents);
         Communication: A2Av1
         Author: dennj.osele@gmail.com
       </pre>
-    </div>
+    </section>
 
     <p class="mt-6 text-lg max-w-3xl leading-relaxed">
       If you are passionate about shaping the future where AI Agents can collaborate, join us!
     </p>
 
-    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
       <a href="mailto:dennj.osele@gmail.com"
-        class="btn bg-primary text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-opacity-80 transition">
-        <img :src="emailIcon" alt="Email" class="w-5 h-5 filter invert" />
+        class="btn bg-[#1E854A] text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-opacity-80 transition">
+        <img :src="emailIcon" alt="Email" class="w-5 h-5 filter invert" draggable="false" />
         Contact Us
       </a>
 
-      <a href="https://github.com/dennj/agents.txt" target="_blank" class="btn btn-outline flex items-center gap-2">
-        <img :src="githubIcon" alt="GitHub" class="w-5 h-5 filter invert" />
+      <a href="https://github.com/dennj/agents.txt" target="_blank"
+        class="btn btn-outline flex items-center gap-2 text-white">
+        <img :src="githubIcon" alt="GitHub" class="w-5 h-5 filter invert" draggable="false" />
         Contribute on GitHub
       </a>
 
       <a href="https://discord.gg/NRNfuaVk"
-        class="btn bg-[#7289da] text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#5b6eae] transition">
-        <img :src="discordIcon" alt="Discord" class="w-5 h-5 filter invert" />
+        class="btn bg-secondary text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#5b6eae] transition">
+        <img :src="discordIcon" alt="Discord" class="w-5 h-5 filter invert" draggable="false" />
         Join Discord
       </a>
     </div>
 
-    <!-- Sponsors Section -->
-    <div class="mt-12 flex flex-col w-full max-w-6xl pr-8 items-center">
-      <h3 class="text-lg font-semibold text-gray-00">Backed by</h3>
+    <section class="mt-12 flex flex-col items-center w-full max-w-6xl">
+      <h3 class="text-base font-semibold text-white">Backed by</h3>
       <div class="mt-4 flex space-x-8">
         <NuxtImg src="/images/dpl.avif" alt="DogPatch Labs" class="h-12" draggable="false" />
         <NuxtImg src="/images/ndrc.avif" alt="NDRC" class="h-12" draggable="false" />
       </div>
-    </div>
+    </section>
   </div>
 
-  <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-gray-50">
-    <CheckAgentsTxt />
+  <section class="min-h-screen flex flex-col items-center text-center px-6 bg-gray-50">
+    <div class="flex-grow"></div>
+
+    <div class="flex flex-grow h-full items-center justify-center">
+      <NuxtLink to="/AgentsTxtBuilder">
+        <button class="bg-secondary text-white text-xl px-8 py-4 rounded-lg hover:bg-opacity-80 transition-all">
+          Generate agents.txt
+        </button>
+      </NuxtLink>
+    </div>
+
+    <div class="flex-grow flex flex-col items-center justify-center w-full">
+      <CheckAgentsTxt />
+    </div>
+
+    <div class="flex-grow"></div>
   </section>
 
   <section class="min-h-screen py-12 px-6 text-center bg-gray-200">
     <h2 class="text-3xl font-bold text-secondary">Known Agents</h2>
-
-    <div v-if="storedAgents.length > 0"
-      class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <div v-if="storedAgents.length" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
       <div v-for="agent in storedAgents" :key="agent.id" class="bg-white rounded-lg overflow-hidden p-4">
         <!-- Agent Logo -->
         <div class="flex justify-center">
@@ -253,19 +265,19 @@ onMounted(fetchStoredAgents);
 
     <div class="mt-8 flex flex-col sm:flex-row gap-6">
       <a href="mailto:dennj.osele@gmail.com"
-        class="btn bg-primary text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-opacity-80 transition">
-        <img :src="emailIcon" alt="Email" class="w-5 h-5 filter invert" />
+        class="btn bg-[#1E854A]  text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-opacity-80 transition">
+        <img :src="emailIcon" alt="Email" class="w-5 h-5 filter invert" draggable="false" />
         Contact Us
       </a>
 
       <a href="https://github.com/dennj/agents.txt" target="_blank" class="btn btn-outline flex items-center gap-2">
-        <img :src="githubIcon" alt="GitHub" class="w-5 h-5 filter invert" />
+        <img :src="githubIcon" alt="GitHub" class="w-5 h-5 filter invert" draggable="false" />
         Contribute on GitHub
       </a>
 
       <a href="https://discord.gg/NRNfuaVk"
-        class="btn bg-[#7289da] text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#5b6eae] transition">
-        <img :src="discordIcon" alt="Email" class="w-5 h-5 filter invert" />
+        class="btn bg-secondary text-white flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#5b6eae] transition">
+        <img :src="discordIcon" alt="Email" class="w-5 h-5 filter invert" draggable="false" />
         Join Discord
       </a>
     </div>
