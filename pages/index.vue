@@ -82,6 +82,10 @@ onMounted(fetchStoredAgents);
 
   <section class="min-h-screen flex flex-col items-center text-center px-6 bg-gray-50">
     <div class="flex-grow"></div>
+    <p class="text-xl text-gray-400">
+      Add <code class="font-mono px-1 py-0.5 rounded">agents.txt</code> to your domain
+      to help people and AI agents discover your services!
+    </p>
 
     <div class="flex flex-grow h-full items-center justify-center">
       <NuxtLink to="/AgentsTxtBuilder">

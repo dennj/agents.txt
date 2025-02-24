@@ -8,7 +8,8 @@ export default defineNuxtConfig({
         { name: 'description', content: 'agents.txt standard for Agent discovery.' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png' }
       ],
       htmlAttrs: {
         lang: 'en'
