@@ -28,7 +28,7 @@
         <FormKit type="textarea" label="Description" v-model="agent.description" validation="required" />
 
         <!-- API URL -->
-        <FormKit type="url" label="API URL (Optional)" v-model="agent.api" />
+        <FormKit type="url" label="API URL OpenAPI (Optional)" v-model="agent.api" />
 
         <!-- Multi-Checkbox for Communication Protocols -->
         <FormKit type="checkbox" label="Supported Communication Protocols" v-model="agent.communication"
@@ -43,10 +43,10 @@
           <pre class="whitespace-pre-wrap text-sm">{{ agentsTxt }}</pre>
         </div>
       </FormKit>
-      
+
       <!-- Instructional Text -->
       <p class="text-center text-gray-600 dark:text-gray-300 mt-20">
-        Install the <code class="font-mono bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded">agents.txt</code> 
+        Install the <code class="font-mono bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded">agents.txt</code>
         file in your website's root directory, then close this page and test it using the test function on the homepage.
       </p>
 
@@ -61,6 +61,7 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 
+// Agent data
 const agent = ref({
   url: "",
   name: "Example",
@@ -74,7 +75,7 @@ const agent = ref({
 const logoError = ref(false);
 
 // Multi-checkbox options
-const protocols = ref({ HTML: "HTML", A2Av1: "A2Av1" });
+const protocols = ref({ HTML: "HTML (WebApp designed for humans)", A2Av1: "A2Av1 (Agent To Agent messaging protocol)" });
 
 // Automatically prepend "https://" if missing
 const ensureUrlProtocol = (url) => {
