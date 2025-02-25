@@ -56,7 +56,10 @@ const parseAgentsTxt = (content: string) => {
   const data: Record<string, string> = {};
 
   lines.forEach(line => {
-    const [key, value] = line.split(":").map(part => part.trim());
+    const [key, ...valueParts] = line.split(":"); // Ensures only the first ":" is split
+    if (!key || valueParts.length === 0) return;
+
+    const value = valueParts.join(":").trim(); // Rejoins remaining parts for URLs
     if (key && value) {
       data[key.toLowerCase()] = value; // Normalize keys to lowercase
     }
@@ -66,18 +69,24 @@ const parseAgentsTxt = (content: string) => {
     return null; // Ensure mandatory fields are present
   }
 
-  data["logo"] = normalizeUrl(data["logo"], {
-    defaultProtocol: 'https', // Ensures HTTPS
-    stripWWW: true,            // Removes "www."
-    removeTrailingSlash: true, // Removes trailing slash
-  });
+  // Normalize logo URL safely
+  if (data["logo"]) {
+    data["logo"] = normalizeUrl(data["logo"], {
+      defaultProtocol: 'https',
+      stripWWW: true,
+      removeTrailingSlash: true,
+    });
+  }
+  else {
+    data["logo"] = "https://agentstxt.dev/favicon.svg"
+  }
 
   return {
     name: data["name"],
-    logo: data["logo"] ? data["logo"] : "https://agentstxt.dev/favicon.svg",
+    logo: data["logo"],
     description: data["description"],
     api: data["api"] || null,
-    communication: data["communication"],
+    communication: data["communication"] || null,
     author: data["author"] || null,
     payment: data["payment"] || null,
   };
