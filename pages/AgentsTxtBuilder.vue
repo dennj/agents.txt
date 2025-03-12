@@ -75,7 +75,7 @@ const agent = ref({
 const logoError = ref(false);
 
 // Multi-checkbox options
-const protocols = ref({ HTML: "HTML (WebApp designed for humans)", A2Av1: "A2Av1 (Agent To Agent messaging protocol)" });
+const protocols = ref({ HTML: "HTML (WebApp designed for humans)", MCP: "MCP (Anthropic Model Context Protocol)" });
 
 // Automatically prepend "https://" if missing
 const ensureUrlProtocol = (url) => {

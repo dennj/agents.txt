@@ -42,7 +42,7 @@ onMounted(fetchStoredAgents);
         Logo: my.example.com/logo.png
         Description: AI Agent example
         API: my.example.com/openapi.yaml
-        Communication: A2Av1
+        Communication: MCP
         Author: dennj.osele@gmail.com
       </pre>
     </section>
