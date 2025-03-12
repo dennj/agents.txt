@@ -27,9 +27,6 @@
         <!-- Description -->
         <FormKit type="textarea" label="Description" v-model="agent.description" validation="required" />
 
-        <!-- API URL -->
-        <FormKit type="url" label="API URL OpenAPI (Optional)" v-model="agent.api" />
-
         <!-- Multi-Checkbox for Communication Protocols -->
         <FormKit type="checkbox" label="Supported Communication Protocols" v-model="agent.communication"
           :options="protocols" />
@@ -67,7 +64,6 @@ const agent = ref({
   name: "Example",
   logo: "https://agentstxt.dev/favicon.svg",
   description: "AI Agent example",
-  api: "",
   communication: [],
   author: "author@email.ai"
 });
@@ -89,7 +85,6 @@ watch(() => agent.value.logo, (newVal) => {
 
 // Watch and format URLs automatically
 watch(() => agent.value.url, (newVal) => { agent.value.url = ensureUrlProtocol(newVal); });
-watch(() => agent.value.api, (newVal) => { agent.value.api = ensureUrlProtocol(newVal); });
 
 // Generate agents.txt dynamically
 const agentsTxt = computed(() => {
@@ -97,7 +92,6 @@ const agentsTxt = computed(() => {
     `Name: ${agent.value.name}`,
     `Description: ${agent.value.description}`,
     agent.value.logo && `Logo: ${agent.value.logo}`,
-    agent.value.api && `API: ${agent.value.api}`,
     agent.value.communication.length && `Communication: ${agent.value.communication.join(", ")}`,
     agent.value.author && `Author: ${agent.value.author}`
   ].filter(Boolean).join("\n");

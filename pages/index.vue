@@ -5,7 +5,7 @@ import emailIcon from '~/assets/email.svg';
 import discordIcon from '~/assets/discord.svg';
 
 const supabase = useSupabaseClient();
-const storedAgents = ref<Array<{ id: number; name: string; logo: string; description: string; api?: string; communication?: string; author?: string; payment?: string; url: string }>>([]);
+const storedAgents = ref<Array<{ id: number; name: string; logo: string; description: string; communication?: string; author?: string; payment?: string; url: string }>>([]);
 
 // Function to fetch stored agents from Supabase
 const fetchStoredAgents = async () => {
@@ -41,7 +41,6 @@ onMounted(fetchStoredAgents);
         Name: Example
         Logo: my.example.com/logo.png
         Description: AI Agent example
-        API: my.example.com/openapi.yaml
         Communication: MCP
         Author: dennj.osele@gmail.com
       </pre>
@@ -121,13 +120,6 @@ onMounted(fetchStoredAgents);
           <p v-if="agent.communication" class="text-gray-600 mt-1"><b>Communication:</b> {{ agent.communication }}</p>
           <p v-if="agent.author" class="text-gray-600 mt-1"><b>Author:</b> {{ agent.author }}</p>
           <p v-if="agent.payment" class="text-gray-600 mt-1"><b>Payment:</b> {{ agent.payment }}</p>
-
-          <!-- API Link (if available) -->
-          <div v-if="agent.api" class="mt-3">
-            <a :href="agent.api" target="_blank" class="text-sm text-secondary font-medium hover:underline">
-              View API Docs
-            </a>
-          </div>
         </div>
       </div>
     </div>

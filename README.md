@@ -99,7 +99,6 @@ Disallow:
 Agent: MyAIService
 Logo: https://myai.example.com/logo.png
 Description: AI service for automated customer support
-OpenAPI: https://myai.example.com/openapi.yaml
 Communication-Protocol: WebSocket, HTTP
 Payment-System: Stripe, PayPal
 ```

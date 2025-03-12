@@ -1,6 +1,5 @@
 Name: Example
 Logo: agentstxt.dev/favicon.svg
 Description: agents.txt example
-API:
 Communication: MCP
 Author: dennj.osele@gmail.com
